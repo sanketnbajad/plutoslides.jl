@@ -6,9 +6,9 @@ using InteractiveUtils
 
 # ╔═╡ 2210f32d-829e-4efe-a072-d478fcc18488
 begin
-	import MarkdownLiteral: @mdx
-	using PlutoLinks, PlutoHooks
-	using LaTeXStrings, HypertextLiteral
+    import MarkdownLiteral: @mdx
+    using PlutoLinks, PlutoHooks
+    using LaTeXStrings, HypertextLiteral
 end
 
 # ╔═╡ 09d21ffa-00d1-4f87-901d-b6c9aee0c954
@@ -23,79 +23,79 @@ Function for title slide with a background image.
 * `contitle` : Title of the conference if any
 * `background_image`: url of the background image (currently local images are not supported)
 """
-function titleslidebi(title,author,affiliations,contitle,background_image="")
-	slide=
-		@htl("""
-<style>
-	    main {
-        max-width: 1700px;
-    }
-    .titlesl {
-        width: 1600px;
-        height: 900px;
-        margin: auto;
-        padding: 0px;
-        box-sizing: border-box;
-        position: relative;
-  		background-image: url('$background_image'); /* Path to your background image */
-		background-size: 100% 100%;
-		background-position: 55% 50%;
-		background-repeat: no-repeat; /* Prevent background image from repeating */
-    }
-		.title-box1 {
-	position: absolute
-    padding: 5px 10px; /* Adjust padding as needed */
-    background-color: #3333B2; /* Adjust background color as needed */
-    color: white; /* Adjust text color as needed */
-    border-radius: 50px; /* Adjust border radius as needed */
-    font-size: 60px; /* Adjust font size as needed */
-	text-align: center;
-}
-	.content2{
-		max-height: 650px;
-        overflow: hidden;
-		margin-bottom: 2px;
-		color: #E3E552;
-		padding: 10px 10px;
-		text-align: justify;
-        box-sizing: border-box;
-	}
-	.slide-box1 {
-	position: absolute;
-	width: 100%;
-	bottom: 0px;
-	height: 20px;
-	margin-left: -10px;
-    padding: 0px 0px; /* Adjust padding as needed */
-    background-color: #3333B2; /* Adjust background color as needed */
-    color: #fff; /* Adjust text color as needed */
-    border-radius: 0px; /* Adjust border radius as needed */
-    font-size: 24px; /* Adjust font size as needed */
-}
-</style>
-<div class="titlesl">
-	<h1></h1>	
-	<div class="title-box1">
-	<div style="font-size: 42px; margin-top: 10px;text-align: center;">
-	$title
-	</div>
-	</div>
-	<div class="content2">
-	<div align="center;" style="font-size: 36px; margin-top: 150px;text-align: center;">
-	$author
-	</div>
-	<div align="center;" style="font-size: 32px; margin-top: 50px;text-align: center;">
-	$affiliations
-	</div>
-	<div align="center;" style="font-size: 36px; margin-top: 100px;text-align: center;">
-	$contitle
-	</div>
-	<div class="slide-box1">
-	<div style="display: flex; font-size: 24px;"><div style="flex: 33%;margin-right: 1px;text-align: left;">
-	</div>
-	</div>
-""")
-	return slide
+function titleslidebi(title, author, affiliations, contitle, background_image="")
+    slide =
+        @htl("""
+      <style>
+      	    main {
+              max-width: 1700px;
+          }
+          .titlesl {
+              width: 1600px;
+              height: 900px;
+              margin: auto;
+              padding: 0px;
+              box-sizing: border-box;
+              position: relative;
+        		background-image: url('$background_image'); /* Path to your background image */
+      		background-size: 100% 100%;
+      		background-position: 55% 50%;
+      		background-repeat: no-repeat; /* Prevent background image from repeating */
+          }
+      		.title-box1 {
+      	position: absolute
+          padding: 5px 10px; /* Adjust padding as needed */
+          background-color: #3333B2; /* Adjust background color as needed */
+          color: white; /* Adjust text color as needed */
+          border-radius: 50px; /* Adjust border radius as needed */
+          font-size: 60px; /* Adjust font size as needed */
+      	text-align: center;
+      }
+      	.content2{
+      		max-height: 650px;
+              overflow: hidden;
+      		margin-bottom: 2px;
+      		color: #E3E552;
+      		padding: 10px 10px;
+      		text-align: justify;
+              box-sizing: border-box;
+      	}
+      	.slide-box1 {
+      	position: absolute;
+      	width: 100%;
+      	bottom: 0px;
+      	height: 20px;
+      	margin-left: -10px;
+          padding: 0px 0px; /* Adjust padding as needed */
+          background-color: #3333B2; /* Adjust background color as needed */
+          color: #fff; /* Adjust text color as needed */
+          border-radius: 0px; /* Adjust border radius as needed */
+          font-size: 24px; /* Adjust font size as needed */
+      }
+      </style>
+      <div class="titlesl">
+      	<h1></h1>	
+      	<div class="title-box1">
+      	<div style="font-size: 42px; margin-top: 10px;text-align: center;">
+      	$title
+      	</div>
+      	</div>
+      	<div class="content2">
+      	<div align="center;" style="font-size: 36px; margin-top: 150px;text-align: center;">
+      	$author
+      	</div>
+      	<div align="center;" style="font-size: 32px; margin-top: 50px;text-align: center;">
+      	$affiliations
+      	</div>
+      	<div align="center;" style="font-size: 36px; margin-top: 100px;text-align: center;">
+      	$contitle
+      	</div>
+      	<div class="slide-box1">
+      	<div style="display: flex; font-size: 24px;"><div style="flex: 33%;margin-right: 1px;text-align: left;">
+      	</div>
+      	</div>
+      """)
+    return slide
 end
 
 # ╔═╡ c42fc7aa-6254-4342-8b5c-a24b67924fde
@@ -109,75 +109,75 @@ Function for title slide without a background image.
 * `affiliations` : Affiliations of the authors 
 * `contitle` : Title of the conference if any
 """
-function titleslide(title,author,affiliations,contitle)
-	slide=
-		@htl("""
-<style>
-	    main {
-        max-width: 1700px;
-    }
-    .titlesl1 {
-        width: 1600px;
-        height: 900px;
-        margin: auto;
-        padding: 0px;
-        box-sizing: border-box;
-        position: relative;
-    }
-		.title-box2 {
-	position: absolute
-    padding: 5px 10px; /* Adjust padding as needed */
-    background-color: #3333B2; /* Adjust background color as needed */
-    color: white; /* Adjust text color as needed */
-    border-radius: 50px; /* Adjust border radius as needed */
-    font-size: 60px; /* Adjust font size as needed */
-	text-align: center;
-}
-	.content3{
-		max-height: 650px;
-        overflow: hidden;
-		margin-bottom: 2px;
-		color: black;
-		padding: 10px 10px;
-		text-align: justify;
-        box-sizing: border-box;
-	}
-	.slide-box {
-	position: absolute;
-	width: 100%;
-	bottom: 0px;
-	height: 20px;
-	margin-left: -10px;
-    padding: 5px 10px; /* Adjust padding as needed */
-    background-color: #3333B2; /* Adjust background color as needed */
-    color: #fff; /* Adjust text color as needed */
-    border-radius: 10px; /* Adjust border radius as needed */
-    font-size: 24px; /* Adjust font size as needed */
-}
-</style>
-<div class="titlesl1">
-		<h1></h1>
-	<div class="title-box2">
-	<div style="font-size: 42px; margin-top: 10px;text-align: center;">
-	$title
-	</div>
-	</div>
-	<div class="content3">
-	<div align="center;" style="font-size: 36px; margin-top: 100px;text-align: center;">
-	$author
-	</div>
-	<div align="center;" style="font-size: 32px; margin-top: 50px;text-align: center;">
-	$affiliations
-	</div>
-	<div align="center;" style="font-size: 36px; margin-top: 100px;text-align: center;">
-	$contitle
-	</div>
-		    <div class="slide-box">
-	<div style="display: flex; font-size: 24px;"><div style="flex: 33%;margin-right: 1px;text-align: left;">
-	</div>
-	</div>
-""")
-	return slide
+function titleslide(title, author, affiliations, contitle)
+    slide =
+        @htl("""
+      <style>
+      	    main {
+              max-width: 1700px;
+          }
+          .titlesl1 {
+              width: 1600px;
+              height: 900px;
+              margin: auto;
+              padding: 0px;
+              box-sizing: border-box;
+              position: relative;
+          }
+      		.title-box2 {
+      	position: absolute
+          padding: 5px 10px; /* Adjust padding as needed */
+          background-color: #3333B2; /* Adjust background color as needed */
+          color: white; /* Adjust text color as needed */
+          border-radius: 50px; /* Adjust border radius as needed */
+          font-size: 60px; /* Adjust font size as needed */
+      	text-align: center;
+      }
+      	.content3{
+      		max-height: 650px;
+              overflow: hidden;
+      		margin-bottom: 2px;
+      		color: black;
+      		padding: 10px 10px;
+      		text-align: justify;
+              box-sizing: border-box;
+      	}
+      	.slide-box {
+      	position: absolute;
+      	width: 100%;
+      	bottom: 0px;
+      	height: 20px;
+      	margin-left: -10px;
+          padding: 5px 10px; /* Adjust padding as needed */
+          background-color: #3333B2; /* Adjust background color as needed */
+          color: #fff; /* Adjust text color as needed */
+          border-radius: 10px; /* Adjust border radius as needed */
+          font-size: 24px; /* Adjust font size as needed */
+      }
+      </style>
+      <div class="titlesl1">
+      		<h1></h1>
+      	<div class="title-box2">
+      	<div style="font-size: 42px; margin-top: 10px;text-align: center;">
+      	$title
+      	</div>
+      	</div>
+      	<div class="content3">
+      	<div align="center;" style="font-size: 36px; margin-top: 100px;text-align: center;">
+      	$author
+      	</div>
+      	<div align="center;" style="font-size: 32px; margin-top: 50px;text-align: center;">
+      	$affiliations
+      	</div>
+      	<div align="center;" style="font-size: 36px; margin-top: 100px;text-align: center;">
+      	$contitle
+      	</div>
+      		    <div class="slide-box">
+      	<div style="display: flex; font-size: 24px;"><div style="flex: 33%;margin-right: 1px;text-align: left;">
+      	</div>
+      	</div>
+      """)
+    return slide
 end
 
 # ╔═╡ b3288414-b4aa-4352-8a3e-a387d55d18a6
@@ -191,7 +191,7 @@ end
 * `slide_number` : Number of the slide 
 * `author`: Name of the authors
 """
-function slide2x2(title,content_vec, references,slide_number,section="Theory",author="Sanket Bajad")
+function slide2x2(title, content_vec, references, slide_number, section="Theory", author="Sanket Bajad")
     slide = @htl("""
 <style>
 	    main {
@@ -311,7 +311,7 @@ end
 * `slide_number` : Number of the slide 
 * `author`: Name of the authors
 """
-function slide2x2Images(title,content_vec, references,slide_number,section="Theory",author="Sanket Bajad")
+function slide2x2Images(title, content_vec, references, slide_number, section="Theory", author="Sanket Bajad")
     slide = @htl("""
 <style>
 	    main {
@@ -438,7 +438,7 @@ Slide with single column layout.
 * `section` : Title of the section
 * `author`: Name of the authors
 """
-function onecolslide(title, content, references,slide_number,section="Theory",author="Sanket Bajad")
+function onecolslide(title, content, references, slide_number, section="Theory", author="Sanket Bajad")
     slide = @htl("""
 <style>
 	    main {
@@ -545,7 +545,7 @@ Slide with two columns layout.
 * `section` : Title of the section
 * `author`: Name of the authors
 """
-function twocolslide(title,content_vec, references,slide_number,section="Theory",author="Sanket Bajad")
+function twocolslide(title, content_vec, references, slide_number, section="Theory", author="Sanket Bajad")
     slide = @htl("""
 <style>
 	    main {
@@ -654,7 +654,7 @@ Slide with three columns layout.
 * `section` : Title of the section
 * `author`: Name of the authors
 """
-function threecolslide(title, content_vec, references,slide_number,section="Theory",author="Sanket Bajad")
+function threecolslide(title, content_vec, references, slide_number, section="Theory", author="Sanket Bajad")
     slide = @htl("""
 <style>
 	    main {
@@ -759,36 +759,36 @@ end
 Function to hide cells.
 """
 function hide_everything_below()
-	hide_everything_below =
-	html"""
-	<style>
-	pluto-cell.hide_everything_below ~ pluto-cell {
-		display: none;
-	}
-	</style>
-	
-	<script>
-	const cell = currentScript.closest("pluto-cell")
-	
-	const setclass = () => {
-		console.log("change!")
-		cell.classList.toggle("hide_everything_below", true)
-	}
-	setclass()
-	const observer = new MutationObserver(setclass)
-	
-	observer.observe(cell, {
-		subtree: false,
-		attributeFilter: ["class"],
-	})
-	
-	invalidation.then(() => {
-		observer.disconnect()
-		cell.classList.toggle("hide_everything_below", false)
-	})
-	
-	</script>
-	"""
+    hide_everything_below =
+        html"""
+        <style>
+        pluto-cell.hide_everything_below ~ pluto-cell {
+        	display: none;
+        }
+        </style>
+
+        <script>
+        const cell = currentScript.closest("pluto-cell")
+
+        const setclass = () => {
+        	console.log("change!")
+        	cell.classList.toggle("hide_everything_below", true)
+        }
+        setclass()
+        const observer = new MutationObserver(setclass)
+
+        observer.observe(cell, {
+        	subtree: false,
+        	attributeFilter: ["class"],
+        })
+
+        invalidation.then(() => {
+        	observer.disconnect()
+        	cell.classList.toggle("hide_everything_below", false)
+        })
+
+        </script>
+        """
 end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
