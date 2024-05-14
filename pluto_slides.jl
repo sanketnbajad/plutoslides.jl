@@ -56,7 +56,7 @@ function hide_everything_below()
 end
 
 # ╔═╡ 0bbc0291-7415-40dc-b6f1-2521c8cc356c
-parameters = TOML.parsefile("parameters.toml")
+parameters = TOML.parsefile(joinpath(@__DIR__, "parameters.toml"))
 
 # ╔═╡ 09d21ffa-00d1-4f87-901d-b6c9aee0c954
 """
