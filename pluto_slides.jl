@@ -11,6 +11,13 @@ begin
     using LaTeXStrings, HypertextLiteral, TOML
 end
 
+# ╔═╡ e18ba3dd-013f-4a1e-abe7-9ff9c4d61e68
+md"""
+# Pluto Slides
+* It is a good idea to have only one "required" argument for all these functions. We can read the rest of the parameters from the TOML file (`parameters.toml`). By doing so, we can make the slides faster. 
+---
+"""
+
 # ╔═╡ 6c18c41f-ee57-4fb1-8499-f7e4b89c1a3c
 """
 Function to hide cells.
@@ -1073,6 +1080,7 @@ version = "17.4.0+2"
 """
 
 # ╔═╡ Cell order:
+# ╟─e18ba3dd-013f-4a1e-abe7-9ff9c4d61e68
 # ╠═09d21ffa-00d1-4f87-901d-b6c9aee0c954
 # ╠═c42fc7aa-6254-4342-8b5c-a24b67924fde
 # ╠═b3288414-b4aa-4352-8a3e-a387d55d18a6
