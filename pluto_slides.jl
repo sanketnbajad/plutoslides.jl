@@ -8,8 +8,48 @@ using InteractiveUtils
 begin
     import MarkdownLiteral: @mdx
     using PlutoLinks, PlutoHooks
-    using LaTeXStrings, HypertextLiteral
+    using LaTeXStrings, HypertextLiteral, TOML
 end
+
+# ╔═╡ 6c18c41f-ee57-4fb1-8499-f7e4b89c1a3c
+"""
+Function to hide cells.
+"""
+function hide_everything_below()
+    hide_everything_below =
+        html"""
+        <style>
+        pluto-cell.hide_everything_below ~ pluto-cell {
+        	display: none;
+        }
+        </style>
+
+        <script>
+        const cell = currentScript.closest("pluto-cell")
+
+        const setclass = () => {
+        	console.log("change!")
+        	cell.classList.toggle("hide_everything_below", true)
+        }
+        setclass()
+        const observer = new MutationObserver(setclass)
+
+        observer.observe(cell, {
+        	subtree: false,
+        	attributeFilter: ["class"],
+        })
+
+        invalidation.then(() => {
+        	observer.disconnect()
+        	cell.classList.toggle("hide_everything_below", false)
+        })
+
+        </script>
+        """
+end
+
+# ╔═╡ 0bbc0291-7415-40dc-b6f1-2521c8cc356c
+parameters = TOML.parsefile("parameters.toml")
 
 # ╔═╡ 09d21ffa-00d1-4f87-901d-b6c9aee0c954
 """
@@ -23,7 +63,7 @@ Function for title slide with a background image.
 * `contitle` : Title of the conference if any
 * `background_image`: url of the background image (currently local images are not supported)
 """
-function titleslidebi(title, author, affiliations, contitle, background_image="")
+function titleslidebi(title, author, affiliations, contitle=parameters["conference"], background_image="")
     slide =
         @htl("""
       <style>
@@ -109,7 +149,7 @@ Function for title slide without a background image.
 * `affiliations` : Affiliations of the authors 
 * `contitle` : Title of the conference if any
 """
-function titleslide(title, author, affiliations, contitle)
+function titleslide(title, author, affiliations, contitle=parameters["conference"])
     slide =
         @htl("""
       <style>
@@ -191,7 +231,7 @@ end
 * `slide_number` : Number of the slide 
 * `author`: Name of the authors
 """
-function slide2x2(title, content_vec, references, slide_number, section="Theory", author="Sanket Bajad")
+function slide2x2(content_vec, title="Title", section="Theory", references="", slide_number="?",   author=parameters["authors"])
     slide = @htl("""
 <style>
 	    main {
@@ -311,7 +351,7 @@ end
 * `slide_number` : Number of the slide 
 * `author`: Name of the authors
 """
-function slide2x2Images(title, content_vec, references, slide_number, section="Theory", author="Sanket Bajad")
+function slide2x2Images(content_vec, title="Title", section="Theory", references="", slide_number="?",   author=parameters["authors"])
     slide = @htl("""
 <style>
 	    main {
@@ -438,7 +478,7 @@ Slide with single column layout.
 * `section` : Title of the section
 * `author`: Name of the authors
 """
-function onecolslide(title, content, references, slide_number, section="Theory", author="Sanket Bajad")
+function onecolslide(content, title="Title", section="Theory", references="", slide_number="?",   author=parameters["authors"])
     slide = @htl("""
 <style>
 	    main {
@@ -545,7 +585,7 @@ Slide with two columns layout.
 * `section` : Title of the section
 * `author`: Name of the authors
 """
-function twocolslide(title, content_vec, references, slide_number, section="Theory", author="Sanket Bajad")
+function twocolslide(content_vec, title="Title", section="Theory", references="", slide_number="?",   author=parameters["authors"])
     slide = @htl("""
 <style>
 	    main {
@@ -654,7 +694,7 @@ Slide with three columns layout.
 * `section` : Title of the section
 * `author`: Name of the authors
 """
-function threecolslide(title, content_vec, references, slide_number, section="Theory", author="Sanket Bajad")
+function threecolslide(content_vec, title="Title", section="Theory", references="", slide_number="?",   author=parameters["authors"])
     slide = @htl("""
 <style>
 	    main {
@@ -754,42 +794,8 @@ function threecolslide(title, content_vec, references, slide_number, section="Th
     return slide
 end
 
-# ╔═╡ 6c18c41f-ee57-4fb1-8499-f7e4b89c1a3c
-"""
-Function to hide cells.
-"""
-function hide_everything_below()
-    hide_everything_below =
-        html"""
-        <style>
-        pluto-cell.hide_everything_below ~ pluto-cell {
-        	display: none;
-        }
-        </style>
+# ╔═╡ 1a7f15a8-1073-4c9f-b743-ed0bdab6fc9d
 
-        <script>
-        const cell = currentScript.closest("pluto-cell")
-
-        const setclass = () => {
-        	console.log("change!")
-        	cell.classList.toggle("hide_everything_below", true)
-        }
-        setclass()
-        const observer = new MutationObserver(setclass)
-
-        observer.observe(cell, {
-        	subtree: false,
-        	attributeFilter: ["class"],
-        })
-
-        invalidation.then(() => {
-        	observer.disconnect()
-        	cell.classList.toggle("hide_everything_below", false)
-        })
-
-        </script>
-        """
-end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -799,6 +805,7 @@ LaTeXStrings = "b964fa9f-0449-5b57-a5c2-d3ea65f4040f"
 MarkdownLiteral = "736d6165-7244-6769-4267-6b50796e6954"
 PlutoHooks = "0ff47ea0-7a50-410d-8455-4348d5de0774"
 PlutoLinks = "0ff47ea0-7a50-410d-8455-4348d5de0420"
+TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
 
 [compat]
 HypertextLiteral = "~0.9.5"
@@ -814,7 +821,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.10.2"
 manifest_format = "2.0"
-project_hash = "1e78378060037d4d6f486efd02b8f4f4117af740"
+project_hash = "7b5f8aa04745a8583d809519660ed60848fd3645"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
@@ -1075,5 +1082,7 @@ version = "17.4.0+2"
 # ╠═e800fdff-a9f1-46ca-b85d-90ddf983db13
 # ╠═6c18c41f-ee57-4fb1-8499-f7e4b89c1a3c
 # ╠═2210f32d-829e-4efe-a072-d478fcc18488
+# ╠═0bbc0291-7415-40dc-b6f1-2521c8cc356c
+# ╠═1a7f15a8-1073-4c9f-b743-ed0bdab6fc9d
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
