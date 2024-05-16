@@ -6,9 +6,9 @@ using InteractiveUtils
 
 # ╔═╡ 2210f32d-829e-4efe-a072-d478fcc18488
 begin
-    import MarkdownLiteral: @mdx
     using PlutoLinks, PlutoHooks
     using LaTeXStrings, HypertextLiteral, TOML
+	using Markdown
 end
 
 # ╔═╡ e18ba3dd-013f-4a1e-abe7-9ff9c4d61e68
@@ -53,6 +53,15 @@ function hide_everything_below()
 
         </script>
         """
+end
+
+# ╔═╡ c5e687ed-89c2-4267-8c01-bdf603721c27
+md"## Admonition"
+
+# ╔═╡ 981ff634-c20b-46d5-9c0a-2bf6fec0af91
+function admon(content, title="", color=:blue)
+	colors=Dict([:blue => "info", :yellow=> "warning", :red => "danger", :green => "warn"])
+	Markdown.MD(Markdown.Admonition(colors[color], title, [content]))
 end
 
 # ╔═╡ 0bbc0291-7415-40dc-b6f1-2521c8cc356c
@@ -809,7 +818,7 @@ PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
 HypertextLiteral = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
 LaTeXStrings = "b964fa9f-0449-5b57-a5c2-d3ea65f4040f"
-MarkdownLiteral = "736d6165-7244-6769-4267-6b50796e6954"
+Markdown = "d6f4376e-aef5-505a-96c1-9c027394607a"
 PlutoHooks = "0ff47ea0-7a50-410d-8455-4348d5de0774"
 PlutoLinks = "0ff47ea0-7a50-410d-8455-4348d5de0420"
 TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
@@ -817,7 +826,6 @@ TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
 [compat]
 HypertextLiteral = "~0.9.5"
 LaTeXStrings = "~1.3.1"
-MarkdownLiteral = "~0.1.1"
 PlutoHooks = "~0.0.5"
 PlutoLinks = "~0.1.6"
 """
@@ -828,7 +836,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.10.2"
 manifest_format = "2.0"
-project_hash = "7b5f8aa04745a8583d809519660ed60848fd3645"
+project_hash = "37d905008f51132271ade2491551f1f391077618"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
@@ -845,17 +853,6 @@ deps = ["InteractiveUtils", "UUIDs"]
 git-tree-sha1 = "c0216e792f518b39b22212127d4a84dc31e4e386"
 uuid = "da1fd8a2-8d9e-5ec2-8556-3022fb5608a2"
 version = "1.3.5"
-
-[[deps.CommonMark]]
-deps = ["Crayons", "JSON", "PrecompileTools", "URIs"]
-git-tree-sha1 = "532c4185d3c9037c0237546d817858b23cf9e071"
-uuid = "a80b9123-70ca-4bc0-993e-6e3bcb318db6"
-version = "0.8.12"
-
-[[deps.Crayons]]
-git-tree-sha1 = "249fe38abf76d48563e2f4556bebd215aa317e15"
-uuid = "a8cc5b0e-0ffa-5ad4-8c14-923d3ee1735f"
-version = "4.1.1"
 
 [[deps.Dates]]
 deps = ["Printf"]
@@ -883,17 +880,11 @@ version = "0.9.5"
 deps = ["Markdown"]
 uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
 
-[[deps.JSON]]
-deps = ["Dates", "Mmap", "Parsers", "Unicode"]
-git-tree-sha1 = "31e996f0a15c7b280ba9f76636b3ff9e2ae58c9a"
-uuid = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
-version = "0.21.4"
-
 [[deps.JuliaInterpreter]]
 deps = ["CodeTracking", "InteractiveUtils", "Random", "UUIDs"]
-git-tree-sha1 = "7b762d81887160169ddfc93a47e5fd7a6a3e78ef"
+git-tree-sha1 = "e9648d90370e2d0317f9518c9c6e0841db54a90b"
 uuid = "aa1ae85d-cabe-5617-a682-6adf51b2e16a"
-version = "0.9.29"
+version = "0.9.31"
 
 [[deps.LaTeXStrings]]
 git-tree-sha1 = "50901ebc375ed41dbf8058da26f9de442febbbec"
@@ -940,19 +931,10 @@ version = "2.4.5"
 deps = ["Base64"]
 uuid = "d6f4376e-aef5-505a-96c1-9c027394607a"
 
-[[deps.MarkdownLiteral]]
-deps = ["CommonMark", "HypertextLiteral"]
-git-tree-sha1 = "0d3fa2dd374934b62ee16a4721fe68c418b92899"
-uuid = "736d6165-7244-6769-4267-6b50796e6954"
-version = "0.1.1"
-
 [[deps.MbedTLS_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "c8ffd9c3-330d-5841-b78e-0817d7145fa1"
 version = "2.28.2+1"
-
-[[deps.Mmap]]
-uuid = "a63ad114-7e13-5084-954f-fe012c677804"
 
 [[deps.MozillaCACerts_jll]]
 uuid = "14a3606d-f60d-562e-9121-12d972cd8159"
@@ -966,12 +948,6 @@ version = "1.2.0"
 git-tree-sha1 = "dfdf5519f235516220579f949664f1bf44e741c5"
 uuid = "bac558e1-5e72-5ebc-8fee-abe8a469f55d"
 version = "1.6.3"
-
-[[deps.Parsers]]
-deps = ["Dates", "PrecompileTools", "UUIDs"]
-git-tree-sha1 = "8489905bcdbcfac64d1daa51ca07c0d8f0283821"
-uuid = "69de0a69-1ddd-5017-9359-2bf0b02dc9f0"
-version = "2.8.1"
 
 [[deps.Pkg]]
 deps = ["Artifacts", "Dates", "Downloads", "FileWatching", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "Serialization", "TOML", "Tar", "UUIDs", "p7zip_jll"]
@@ -989,18 +965,6 @@ deps = ["FileWatching", "InteractiveUtils", "Markdown", "PlutoHooks", "Revise", 
 git-tree-sha1 = "8f5fa7056e6dcfb23ac5211de38e6c03f6367794"
 uuid = "0ff47ea0-7a50-410d-8455-4348d5de0420"
 version = "0.1.6"
-
-[[deps.PrecompileTools]]
-deps = ["Preferences"]
-git-tree-sha1 = "03b4c25b43cb84cee5c90aa9b5ea0a78fd848d2f"
-uuid = "aea7be01-6a6a-4083-8856-8a6e6704d82a"
-version = "1.2.0"
-
-[[deps.Preferences]]
-deps = ["TOML"]
-git-tree-sha1 = "9306f6085165d270f7e3db02af26a400d580f5c6"
-uuid = "21216c6a-2e73-6563-6e65-726566657250"
-version = "1.4.3"
 
 [[deps.Printf]]
 deps = ["Unicode"]
@@ -1051,11 +1015,6 @@ git-tree-sha1 = "eae1bb484cd63b36999ee58be2de6c178105112f"
 uuid = "410a4b4d-49e4-4fbc-ab6d-cb71b17b3775"
 version = "0.1.8"
 
-[[deps.URIs]]
-git-tree-sha1 = "67db6cc7b3821e19ebe75791a9dd19c9b1188f2b"
-uuid = "5c2747f8-b7ea-4ff2-ba2e-563bfd36b1d4"
-version = "1.5.1"
-
 [[deps.UUIDs]]
 deps = ["Random", "SHA"]
 uuid = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"
@@ -1089,6 +1048,8 @@ version = "17.4.0+2"
 # ╠═7650a135-684d-4d9b-8d8e-5a0b28c08398
 # ╠═e800fdff-a9f1-46ca-b85d-90ddf983db13
 # ╠═6c18c41f-ee57-4fb1-8499-f7e4b89c1a3c
+# ╠═c5e687ed-89c2-4267-8c01-bdf603721c27
+# ╠═981ff634-c20b-46d5-9c0a-2bf6fec0af91
 # ╠═2210f32d-829e-4efe-a072-d478fcc18488
 # ╠═0bbc0291-7415-40dc-b6f1-2521c8cc356c
 # ╠═1a7f15a8-1073-4c9f-b743-ed0bdab6fc9d
