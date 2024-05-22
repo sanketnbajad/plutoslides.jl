@@ -15,7 +15,8 @@ end
 # ╔═╡ e18ba3dd-013f-4a1e-abe7-9ff9c4d61e68
 md"""
 # Pluto Slides
-* It is a good idea to have only one "required" argument for all these functions. We can read the rest of the parameters from the TOML file (`parameters.toml`). By doing so, we can make the slides faster. 
+* It is a good idea to have only one "required" argument for all these functions. We can read the rest of the parameters from the TOML file (`parameters.toml`). By doing so, we can make the slides faster.
+* Use keyword arguments for all functions other than content.
 ---
 """
 
@@ -89,7 +90,7 @@ Function for title slide with a background image.
 * `contitle` : Title of the conference if any
 * `background_image`: url of the background image (currently local images are not supported)
 """
-function titleslidebi(title, author, affiliations, contitle=parameters["conference"], background_image="")
+function titleslidebi(;title="Title", author=parameters["authors"], affiliations="IISc", contitle=parameters["conference"], background_image="")
     slide =
         @htl("""
       <style>
@@ -175,7 +176,7 @@ Function for title slide without a background image.
 * `affiliations` : Affiliations of the authors 
 * `contitle` : Title of the conference if any
 """
-function titleslide(title, author, affiliations, contitle=parameters["conference"])
+function titleslide(; title="Title", author=parameters["authors"], affiliations="IISc", contitle=parameters["conference"])
     slide =
         @htl("""
       <style>
@@ -253,7 +254,7 @@ end
 * `slide_number` : Number of the slide 
 * `author`: Name of the authors
 """
-function slide2x2(content_vec, title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"]; spacing="auto")
+function slide2x2(content_vec; title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"], spacing="auto")
     slide = @htl("""
 <style>
 	    main {
@@ -374,7 +375,7 @@ end
 * `slide_number` : Number of the slide 
 * `author`: Name of the authors
 """
-function slide2x2Images(content_vec, title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"])
+function slide2x2Images(content_vec; title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"])
     slide = @htl("""
 <style>
 	    main {
@@ -501,7 +502,7 @@ Slide with single column layout.
 * `section` : Title of the section
 * `author`: Name of the authors
 """
-function onecolslide(content, title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"]; algn="justify")
+function onecolslide(content; title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"], alignment="justify")
     if (references != "")
         slide = @htl("""
     <style>
@@ -526,7 +527,7 @@ function onecolslide(content, title="Title", section="Theory", references="", sl
     		background-color: white;
     		color: black;
     		padding: 10px 10px;
-    		text-align: $(algn);
+    		text-align: $(alignment);
             box-sizing: border-box;
     	}
     .references {
@@ -570,7 +571,7 @@ function onecolslide(content, title="Title", section="Theory", references="", sl
     	$title
     	</h1>
             <div class="content">
-    		<div align="$(algn);" style="font-size: 30px;">
+    		<div align="$(alignment);" style="font-size: 30px;">
                 $content
             </div>
     	</div>
@@ -617,7 +618,7 @@ function onecolslide(content, title="Title", section="Theory", references="", sl
     		background-color: white;
     		color: black;
     		padding: 10px 10px;
-    		text-align: $(algn);
+    		text-align: $(alignment);
             box-sizing: border-box;
     	}
     .references {
@@ -661,7 +662,7 @@ function onecolslide(content, title="Title", section="Theory", references="", sl
     	$title
     	</h1>
             <div class="content">
-    		<div align="$(algn);" style="font-size: 30px;">
+    		<div align="$(alignment);" style="font-size: 30px;">
                 $content
             </div>
     	</div>
@@ -696,7 +697,7 @@ Slide with two columns layout.
 * `section` : Title of the section
 * `author`: Name of the authors
 """
-function twocolslide(content_vec, title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"]; algn=["justify", "justify"], spacing="auto")
+function twocolslide(content_vec; title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"], alignment=["justify", "justify"], spacing="auto")
     if (references != "")
         slide = @htl("""
     <style>
@@ -765,10 +766,10 @@ function twocolslide(content_vec, title="Title", section="Theory", references=""
     	$title
     	</h1>
             <div class="content">
-    	  <div style="display: flex; font-size: 30px;"><div style="flex: $(spacing); margin-right: 5px; text-align:$(algn[1]);">
+    	  <div style="display: flex; font-size: 30px;"><div style="flex: $(spacing); margin-right: 5px; text-align:$(alignment[1]);">
             $(content_vec[1])
         </div>
-        <div style="flex: $(spacing); margin-left: 5px; text-align: $(algn[2]);">
+        <div style="flex: $(spacing); margin-left: 5px; text-align: $(alignment[2]);">
             $(content_vec[2])
         </div>
     	</div>
@@ -859,10 +860,10 @@ function twocolslide(content_vec, title="Title", section="Theory", references=""
      	$title
      	</h1>
              <div class="content">
-     	  <div style="display: flex; font-size: 30px;"><div style="flex: $(spacing); margin-right: 5px; text-align:$(algn[1]);">
+     	  <div style="display: flex; font-size: 30px;"><div style="flex: $(spacing); margin-right: 5px; text-align:$(alignment[1]);">
              $(content_vec[1])
          </div>
-         <div style="flex: $(spacing); margin-left: 5px; text-align: $(algn[2]);">
+         <div style="flex: $(spacing); margin-left: 5px; text-align: $(alignment[2]);">
              $(content_vec[2])
          </div>
      	</div>
@@ -896,7 +897,7 @@ Slide with three columns layout.
 * `section` : Title of the section
 * `author`: Name of the authors
 """
-function threecolslide(content_vec, title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"])
+function threecolslide(content_vec; title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"])
     slide = @htl("""
 <style>
 	    main {
@@ -1343,7 +1344,7 @@ version = "17.4.0+2"
 """
 
 # ╔═╡ Cell order:
-# ╟─e18ba3dd-013f-4a1e-abe7-9ff9c4d61e68
+# ╠═e18ba3dd-013f-4a1e-abe7-9ff9c4d61e68
 # ╠═09d21ffa-00d1-4f87-901d-b6c9aee0c954
 # ╠═c42fc7aa-6254-4342-8b5c-a24b67924fde
 # ╠═c1f832df-8184-4fe2-bfb3-7ab6f007b19b
