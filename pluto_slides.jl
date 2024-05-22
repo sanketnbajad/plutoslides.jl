@@ -70,7 +70,22 @@ function hide_everything_below()
 end
 
 # ╔═╡ 981ff634-c20b-46d5-9c0a-2bf6fec0af91
-function admon(content, title="", color=:blue)
+"""
+	admon(content, title="", color=:blue)
+
+Create an admonition block with the specified content, title, and color.
+
+# Arguments
+- `content`: The content of the admonition block.
+- `title`: The title of the admonition block (default: "").
+- `color`: The color of the admonition block (default: :blue).
+
+# Returns
+An `Admonition` object representing the admonition block.
+
+# Example
+"""
+function admon(content; title="", color=:blue)
     colors = Dict([:blue => "info", :yellow => "warning", :red => "danger", :green => "warn"])
     Markdown.MD(Markdown.Admonition(colors[color], title, [content]))
 end
@@ -119,7 +134,7 @@ function titleslidebi(;title="Title", author=parameters["authors"], affiliations
       	text-align: center;
       }
       	.content2{
-      		max-height: 680px;
+      		max-height: 770px;
               overflow: hidden;
       		margin-bottom: 2px;
       		color: #E3E552;
@@ -201,7 +216,7 @@ function titleslide(; title="Title", author=parameters["authors"], affiliations=
       	text-align: center;
       }
       	.content3{
-      		max-height: 680px;
+      		max-height: 770px;
               overflow: hidden;
       		margin-bottom: 2px;
       		color: black;
@@ -272,7 +287,7 @@ function slide2x2(content_vec; title="Title", section="Theory", references="", s
     font-size: 42px;
 }
 	.content{
-		max-height: 680px;
+		max-height: 770px;
         overflow: hidden;
 		margin-bottom: 2px;
 		background-color: white;
@@ -393,7 +408,7 @@ function slide2x2Images(content_vec; title="Title", section="Theory", references
     font-size: 42px;
 }
 	.content{
-		max-height: 680px;
+		max-height: 770px;
         overflow: hidden;
 		margin-bottom: 2px;
 		background-color: white;
@@ -502,7 +517,7 @@ Slide with single column layout.
 * `section` : Title of the section
 * `author`: Name of the authors
 """
-function onecolslide(content; title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"], alignment="justify")
+function onecolslide(content; title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"], align="justify")
     if (references != "")
         slide = @htl("""
     <style>
@@ -521,13 +536,13 @@ function onecolslide(content; title="Title", section="Theory", references="", sl
         font-size: 42px;
     }
     	.content{
-    		max-height: 680px;
+    		max-height: 770px;
             overflow: hidden;
     		margin-bottom: 2px;
     		background-color: white;
     		color: black;
     		padding: 10px 10px;
-    		text-align: $(alignment);
+    		text-align: $(align);
             box-sizing: border-box;
     	}
     .references {
@@ -571,7 +586,7 @@ function onecolslide(content; title="Title", section="Theory", references="", sl
     	$title
     	</h1>
             <div class="content">
-    		<div align="$(alignment);" style="font-size: 30px;">
+    		<div align="$(align);" style="font-size: 30px;">
                 $content
             </div>
     	</div>
@@ -612,13 +627,13 @@ function onecolslide(content; title="Title", section="Theory", references="", sl
         font-size: 42px;
     }
     	.content{
-    		max-height: 680px;
+    		max-height: 770px;
             overflow: hidden;
     		margin-bottom: 2px;
     		background-color: white;
     		color: black;
     		padding: 10px 10px;
-    		text-align: $(alignment);
+    		text-align: $(align);
             box-sizing: border-box;
     	}
     .references {
@@ -662,7 +677,7 @@ function onecolslide(content; title="Title", section="Theory", references="", sl
     	$title
     	</h1>
             <div class="content">
-    		<div align="$(alignment);" style="font-size: 30px;">
+    		<div align="$(align);" style="font-size: 30px;">
                 $content
             </div>
     	</div>
@@ -697,7 +712,7 @@ Slide with two columns layout.
 * `section` : Title of the section
 * `author`: Name of the authors
 """
-function twocolslide(content_vec; title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"], alignment=["justify", "justify"], spacing="auto")
+function twocolslide(content_vec; title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"], align=["justify", "justify"], spacing="auto")
     if (references != "")
         slide = @htl("""
     <style>
@@ -716,7 +731,7 @@ function twocolslide(content_vec; title="Title", section="Theory", references=""
         font-size: 42px;
     }
     	.content{
-    		max-height: 680px;
+    		max-height: 770px;
             overflow: hidden;
     		margin-bottom: 2px;
     		background-color: white;
@@ -766,10 +781,10 @@ function twocolslide(content_vec; title="Title", section="Theory", references=""
     	$title
     	</h1>
             <div class="content">
-    	  <div style="display: flex; font-size: 30px;"><div style="flex: $(spacing); margin-right: 5px; text-align:$(alignment[1]);">
+    	  <div style="display: flex; font-size: 30px;"><div style="flex: $(spacing); margin-right: 5px; text-align:$(align[1]);">
             $(content_vec[1])
         </div>
-        <div style="flex: $(spacing); margin-left: 5px; text-align: $(alignment[2]);">
+        <div style="flex: $(spacing); margin-left: 5px; text-align: $(align[2]);">
             $(content_vec[2])
         </div>
     	</div>
@@ -810,7 +825,7 @@ function twocolslide(content_vec; title="Title", section="Theory", references=""
          font-size: 42px;
      }
      	.content{
-     		max-height: 680px;
+     		max-height: 770px;
              overflow: hidden;
      		margin-bottom: 2px;
      		background-color: white;
@@ -860,10 +875,10 @@ function twocolslide(content_vec; title="Title", section="Theory", references=""
      	$title
      	</h1>
              <div class="content">
-     	  <div style="display: flex; font-size: 30px;"><div style="flex: $(spacing); margin-right: 5px; text-align:$(alignment[1]);">
+     	  <div style="display: flex; font-size: 30px;"><div style="flex: $(spacing); margin-right: 5px; text-align:$(align[1]);">
              $(content_vec[1])
          </div>
-         <div style="flex: $(spacing); margin-left: 5px; text-align: $(alignment[2]);">
+         <div style="flex: $(spacing); margin-left: 5px; text-align: $(align[2]);">
              $(content_vec[2])
          </div>
      	</div>
@@ -915,7 +930,7 @@ function threecolslide(content_vec; title="Title", section="Theory", references=
     font-size: 42px;
 }
 	.content{
-		max-height: 680px;
+		max-height: 770px;
         overflow: hidden;
 		margin-bottom: 2px;
 		background-color: white;
@@ -1344,7 +1359,7 @@ version = "17.4.0+2"
 """
 
 # ╔═╡ Cell order:
-# ╠═e18ba3dd-013f-4a1e-abe7-9ff9c4d61e68
+# ╟─e18ba3dd-013f-4a1e-abe7-9ff9c4d61e68
 # ╠═09d21ffa-00d1-4f87-901d-b6c9aee0c954
 # ╠═c42fc7aa-6254-4342-8b5c-a24b67924fde
 # ╠═c1f832df-8184-4fe2-bfb3-7ab6f007b19b
