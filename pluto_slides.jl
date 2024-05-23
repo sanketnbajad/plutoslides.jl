@@ -134,7 +134,7 @@ function titleslidebi(;title="Title", author=parameters["authors"], affiliations
       	text-align: center;
       }
       	.content2{
-      		max-height: 770px;
+      		max-height: 775px;
               overflow: hidden;
       		margin-bottom: 2px;
       		color: #E3E552;
@@ -216,7 +216,7 @@ function titleslide(; title="Title", author=parameters["authors"], affiliations=
       	text-align: center;
       }
       	.content3{
-      		max-height: 770px;
+      		max-height: 775px;
               overflow: hidden;
       		margin-bottom: 2px;
       		color: black;
@@ -287,7 +287,7 @@ function slide2x2(content_vec; title="Title", section="Theory", references="", s
     font-size: 42px;
 }
 	.content{
-		max-height: 770px;
+		max-height: 775px;
         overflow: hidden;
 		margin-bottom: 2px;
 		background-color: white;
@@ -408,7 +408,7 @@ function slide2x2Images(content_vec; title="Title", section="Theory", references
     font-size: 42px;
 }
 	.content{
-		max-height: 770px;
+		max-height: 775px;
         overflow: hidden;
 		margin-bottom: 2px;
 		background-color: white;
@@ -536,7 +536,7 @@ function onecolslide(content; title="Title", section="Theory", references="", sl
         font-size: 42px;
     }
     	.content{
-    		max-height: 770px;
+    		max-height: 775px;
             overflow: hidden;
     		margin-bottom: 2px;
     		background-color: white;
@@ -627,7 +627,7 @@ function onecolslide(content; title="Title", section="Theory", references="", sl
         font-size: 42px;
     }
     	.content{
-    		max-height: 770px;
+    		max-height: 775px;
             overflow: hidden;
     		margin-bottom: 2px;
     		background-color: white;
@@ -731,7 +731,7 @@ function twocolslide(content_vec; title="Title", section="Theory", references=""
         font-size: 42px;
     }
     	.content{
-    		max-height: 770px;
+    		max-height: 775px;
             overflow: hidden;
     		margin-bottom: 2px;
     		background-color: white;
@@ -825,7 +825,7 @@ function twocolslide(content_vec; title="Title", section="Theory", references=""
          font-size: 42px;
      }
      	.content{
-     		max-height: 770px;
+     		max-height: 775px;
              overflow: hidden;
      		margin-bottom: 2px;
      		background-color: white;
@@ -930,7 +930,7 @@ function threecolslide(content_vec; title="Title", section="Theory", references=
     font-size: 42px;
 }
 	.content{
-		max-height: 770px;
+		max-height: 775px;
         overflow: hidden;
 		margin-bottom: 2px;
 		background-color: white;
