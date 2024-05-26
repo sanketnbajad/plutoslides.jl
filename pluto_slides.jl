@@ -517,7 +517,7 @@ Slide with single column layout.
 * `section` : Title of the section
 * `author`: Name of the authors
 """
-function onecolslide(content; title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"], align="justify")
+function onecolslide(content; title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"], align="center")
     if (references != "")
         slide = @htl("""
     <style>
@@ -535,14 +535,14 @@ function onecolslide(content; title="Title", section="Theory", references="", sl
     	.title {
         font-size: 42px;
     }
-    	.content{
+    	.contentones{
     		max-height: 775px;
             overflow: hidden;
     		margin-bottom: 2px;
     		background-color: white;
     		color: black;
     		padding: 10px 10px;
-    		text-align: $(align);
+    		text-align: $align;
             box-sizing: border-box;
     	}
     .references {
@@ -585,8 +585,8 @@ function onecolslide(content; title="Title", section="Theory", references="", sl
     	<div align="center;margin-top: 1px;">
     	$title
     	</h1>
-            <div class="content">
-    		<div align="$(align);" style="font-size: 30px;">
+            <div class="contentones" style="text-align: $align;">
+    		<div style="font-size: 30px;">
                 $content
             </div>
     	</div>
@@ -626,14 +626,14 @@ function onecolslide(content; title="Title", section="Theory", references="", sl
     	.title {
         font-size: 42px;
     }
-    	.content{
+    	.contentoness{
     		max-height: 775px;
             overflow: hidden;
     		margin-bottom: 2px;
     		background-color: white;
     		color: black;
     		padding: 10px 10px;
-    		text-align: $(align);
+    		text-align: $align;
             box-sizing: border-box;
     	}
     .references {
@@ -676,8 +676,8 @@ function onecolslide(content; title="Title", section="Theory", references="", sl
     	<div align="center;margin-top: 1px;">
     	$title
     	</h1>
-            <div class="content">
-    		<div align="$(align);" style="font-size: 30px;">
+            <div class="contentoness" style="text-align: $align;">
+    		<div style="font-size: 30px;">
                 $content
             </div>
     	</div>
@@ -698,7 +698,6 @@ function onecolslide(content; title="Title", section="Theory", references="", sl
     end
     return slide
 end
-
 
 # ╔═╡ 7650a135-684d-4d9b-8d8e-5a0b28c08398
 """
