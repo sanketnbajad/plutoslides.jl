@@ -105,7 +105,7 @@ Function for title slide with a background image.
 * `contitle` : Title of the conference if any
 * `background_image`: url of the background image (currently local images are not supported)
 """
-function titleslidebi(;title="Title", author=parameters["authors"], affiliations="IISc", contitle=parameters["conference"], background_image="")
+function titleslidebi(;title=parameters["talk_title"], author=parameters["authors"], affiliations="IISc", contitle=parameters["conference"], background_image="")
     slide =
         @htl("""
       <style>
@@ -191,7 +191,7 @@ Function for title slide without a background image.
 * `affiliations` : Affiliations of the authors 
 * `contitle` : Title of the conference if any
 """
-function titleslide(; title="Title", author=parameters["authors"], affiliations="IISc", contitle=parameters["conference"])
+function titleslide(; title=parameters["talk_title"], author=parameters["authors"], affiliations="IISc", contitle=parameters["conference"])
     slide =
         @htl("""
       <style>
@@ -269,7 +269,7 @@ end
 * `slide_number` : Number of the slide 
 * `author`: Name of the authors
 """
-function slide2x2(content_vec; title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"], spacing="auto")
+function slide2x2(content_vec; title="Title", section=parameters["talk_short_title"], references="", slide_number="", author=parameters["authors"], spacing="auto")
     slide = @htl("""
 <style>
 	    main {
@@ -390,7 +390,7 @@ end
 * `slide_number` : Number of the slide 
 * `author`: Name of the authors
 """
-function slide2x2Images(content_vec; title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"])
+function slide2x2Images(content_vec; title="Title", section=parameters["talk_short_title"], references="", slide_number="", author=parameters["authors"])
     slide = @htl("""
 <style>
 	    main {
@@ -517,7 +517,7 @@ Slide with single column layout.
 * `section` : Title of the section
 * `author`: Name of the authors
 """
-function onecolslide(content; title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"], align="center")
+function onecolslide(content; title="Title", section=parameters["talk_short_title"], references="", slide_number="", author=parameters["authors"], align="center")
     if (references != "")
         slide = @htl("""
     <style>
@@ -711,7 +711,7 @@ Slide with two columns layout.
 * `section` : Title of the section
 * `author`: Name of the authors
 """
-function twocolslide(content_vec; title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"], align=["justify", "justify"], spacing="auto")
+function twocolslide(content_vec; title="Title", section=parameters["talk_short_title"], references="", slide_number="", author=parameters["authors"], align=["justify", "justify"], spacing="auto")
     if (references != "")
         slide = @htl("""
     <style>
@@ -911,7 +911,7 @@ Slide with three columns layout.
 * `section` : Title of the section
 * `author`: Name of the authors
 """
-function threecolslide(content_vec; title="Title", section="Theory", references="", slide_number="?", author=parameters["authors"])
+function threecolslide(content_vec; title="Title", section=parameters["talk_short_title"], references="", slide_number="", author=parameters["authors"])
     slide = @htl("""
 <style>
 	    main {
