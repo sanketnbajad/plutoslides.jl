@@ -180,6 +180,119 @@ function titleslidebi(;title=parameters["talk_title"], author=parameters["author
     return slide
 end
 
+"""
+Function for title slide with logos.
+
+# Arguments
+
+* `title` : Title of the presentation
+* `author` : Name of the authors
+* `affiliations` : Affiliations of the authors 
+* `contitle` : Title of the conference if any
+* `background_image`: url of the background image (currently local images are not supported, you can add the author's headshot using this)
+* `left_logo`: url of the left logo (currently local images are not supported)
+* `right_logo`: url of the right logo (currently local images are not supported)
+* `size`: width and length of the left logo
+* `size1`: width and length of the right logo
+"""
+function titleslidelogo(;title="Title", author=parameters["authors"], affiliations="IISc", contitle=parameters["conference"], background_image="",left_logo="",right_logo="",size=["100px","100px"],size1=["100px","100px"])
+    slide =
+        @htl("""
+      <style>
+      	    main {
+              max-width: 1700px;
+          }
+          .titlesl2 {
+              width: 1600px;
+              height: 900px;
+              margin: auto;
+              padding: 0px;
+              box-sizing: border-box;
+              position: relative;
+      		background-repeat: no-repeat; /* Prevent background image from repeating */
+          }
+      		.title-box1 {
+      	position: absolute;
+			margin-top: 100px;
+          padding: 5px 10px; /* Adjust padding as needed */
+          background-color: #3333B2; /* Adjust background color as needed */
+          color: white; /* Adjust text color as needed */
+          border-radius: 50px; /* Adjust border radius as needed */
+          font-size: 60px; /* Adjust font size as needed */
+      	text-align: center;
+      }
+      	.content2{
+      		max-height: 775px;
+              overflow: hidden;
+      		margin-bottom: 2px;
+      		color: black;
+      		padding: 10px 10px;
+      		text-align: justify;
+              box-sizing: border-box;
+      	}
+
+.titlesl2::before,
+.titlesl2::after {
+    content: "";
+    position: absolute;
+    top: 5%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translateY(-50%);
+}
+
+.titlesl2::before {
+	width: $(size[1]); /* Adjust the width of the left logo */
+    height: $(size[1]); /* Adjust the height of the left logo */
+    left: 0;
+    background-image: url('$left_logo'); /* Path to your left logo */
+}
+
+.titlesl2::after {
+	width: $(size1[1]); /* Adjust the width of the right logo */
+    height: $(size1[1]); /* Adjust the height of the right logo */
+    right: 0;
+    background-image: url('$right_logo'); /* Path to your right logo */
+}
+		
+      	.slide-box1 {
+      	position: absolute;
+      	width: 100%;
+      	bottom: 0px;
+      	height: 20px;
+      	margin-left: -10px;
+          padding: 0px 0px; /* Adjust padding as needed */
+          background-color: #3333B2; /* Adjust background color as needed */
+          color: #fff; /* Adjust text color as needed */
+          border-radius: 0px; /* Adjust border radius as needed */
+          font-size: 24px; /* Adjust font size as needed */
+      }
+      </style>
+      <div class="titlesl2">
+      	<h1></h1>	
+      	<div class="title-box1">
+      	<div style="font-size: 42px; margin-top: 10px;text-align: center;">
+      	$title
+      	</div>
+      	</div>
+      	<div class="content2">
+      	<div align="center;" style="font-size: 36px; margin-top: 300px;text-align: center;">
+      	$author
+      	</div>
+      	<div align="center;" style="font-size: 32px; margin-top: 50px;text-align: center;">
+      	$affiliations
+      	</div>
+      	<div align="center;" style="font-size: 36px; margin-top: 100px;text-align: center;">
+      	$contitle
+      	</div>
+      	<div class="slide-box1">
+      	<div style="display: flex; font-size: 24px;"><div style="flex: 33%;margin-right: 1px;text-align: left;">
+      	</div>
+      	</div>
+      """)
+    return slide
+end
+
 # ╔═╡ c42fc7aa-6254-4342-8b5c-a24b67924fde
 """
 Function for title slide without a background image.
@@ -376,115 +489,6 @@ function slide2x2(content_vec; title="Title", section=parameters["talk_short_tit
 </div>
 </div>
 """)
-    return slide
-end
-"""
-Function for title slide with logos.
-
-# Arguments
-
-* `title` : Title of the presentation
-* `author` : Name of the authors
-* `affiliations` : Affiliations of the authors 
-* `contitle` : Title of the conference if any
-* `background_image`: url of the background image (currently local images are not supported, you can add the author's headshot using this)
-* `left_logo`: url of the left logo (currently local images are not supported)
-* `right_logo`: url of the right logo (currently local images are not supported)
-* `size`: width and length of the logos (will be same for both the logos)
-"""
-function titleslidelogo(;title="Title", author=parameters["authors"], affiliations="IISc", contitle=parameters["conference"], background_image="",left_logo="",right_logo="",size=["100px","100px"])
-    slide =
-        @htl("""
-      <style>
-      	    main {
-              max-width: 1700px;
-          }
-          .titlesl2 {
-              width: 1600px;
-              height: 900px;
-              margin: auto;
-              padding: 0px;
-              box-sizing: border-box;
-              position: relative;
-      		background-repeat: no-repeat; /* Prevent background image from repeating */
-          }
-      		.title-box1 {
-      	position: absolute;
-			margin-top: 100px;
-          padding: 5px 10px; /* Adjust padding as needed */
-          background-color: #3333B2; /* Adjust background color as needed */
-          color: white; /* Adjust text color as needed */
-          border-radius: 50px; /* Adjust border radius as needed */
-          font-size: 60px; /* Adjust font size as needed */
-      	text-align: center;
-      }
-      	.content2{
-      		max-height: 775px;
-              overflow: hidden;
-      		margin-bottom: 2px;
-      		color: black;
-      		padding: 10px 10px;
-      		text-align: justify;
-              box-sizing: border-box;
-      	}
-
-.titlesl2::before,
-.titlesl2::after {
-    content: "";
-    position: absolute;
-    top: 5%;
-    width: $(size[1]); /* Adjust the width of the logo */
-    height: $(size[2]); /* Adjust the height of the logo */
-    background-size: contain;
-    background-repeat: no-repeat;
-    transform: translateY(-50%);
-}
-
-.titlesl2::before {
-    left: 0;
-    background-image: url('$left_logo'); /* Path to your left logo */
-}
-
-.titlesl2::after {
-    right: 0;
-    background-image: url('$right_logo'); /* Path to your right logo */
-}
-		
-      	.slide-box1 {
-      	position: absolute;
-      	width: 100%;
-      	bottom: 0px;
-      	height: 20px;
-      	margin-left: -10px;
-          padding: 0px 0px; /* Adjust padding as needed */
-          background-color: #3333B2; /* Adjust background color as needed */
-          color: #fff; /* Adjust text color as needed */
-          border-radius: 0px; /* Adjust border radius as needed */
-          font-size: 24px; /* Adjust font size as needed */
-      }
-      </style>
-      <div class="titlesl2">
-      	<h1></h1>	
-      	<div class="title-box1">
-      	<div style="font-size: 42px; margin-top: 10px;text-align: center;">
-      	$title
-      	</div>
-      	</div>
-      	<div class="content2">
-      	<div align="center;" style="font-size: 36px; margin-top: 300px;text-align: center;">
-      	$author
-      	</div>
-      	<div align="center;" style="font-size: 32px; margin-top: 50px;text-align: center;">
-      	$affiliations
-      	</div>
-      	<div align="center;" style="font-size: 36px; margin-top: 100px;text-align: center;">
-      	$contitle
-      	</div>
-      	<div class="slide-box1">
-      	<div style="display: flex; font-size: 24px;"><div style="flex: 33%;margin-right: 1px;text-align: left;">
-      	</div>
-      	</div>
-      """)
     return slide
 end
 
