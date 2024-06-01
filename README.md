@@ -17,4 +17,5 @@ Interactive and Dynamic: Leverage the interactivity and dynamic nature of Pluto.
 Ensure you have the following installed:
 
 Julia
+
 Pluto.jl (works with v0.19.39 or older)
