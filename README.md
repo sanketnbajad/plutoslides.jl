@@ -7,7 +7,7 @@ You can easily present your slides using Pluto's `present()` function or print t
 
 Multiple Slide Templates: A variety of slide templates to suit different presentation needs.
 
-Easy Presentation: Seamless integration with Pluto's present() function for live presentations.
+Easy Presentation: Seamless integration with Pluto's `present()` function for live presentations.
 
 Printable Slides: Generate slides optimized for printing in various paper sizes.
 
