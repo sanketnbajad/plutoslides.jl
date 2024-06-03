@@ -9,7 +9,7 @@ begin
     using PlutoLinks, PlutoHooks, PlutoUI
     using LaTeXStrings, TOML
     using Markdown
-	using HypertextLiteral: @htl
+    using HypertextLiteral: @htl
 end
 
 # ╔═╡ e18ba3dd-013f-4a1e-abe7-9ff9c4d61e68
@@ -93,7 +93,7 @@ end
 # ╔═╡ 0bbc0291-7415-40dc-b6f1-2521c8cc356c
 parameters = TOML.parsefile(joinpath(@__DIR__, "parameters.toml"))
 
-# ╔═╡ 09d21ffa-00d1-4f87-901d-b6c9aee0c954
+# ╔═╡ e397b8b9-2df3-48a5-9e88-7ed18080d734
 """
 Function for title slide with a background image.
 
@@ -105,7 +105,7 @@ Function for title slide with a background image.
 * `contitle` : Title of the conference if any
 * `background_image`: url of the background image (currently local images are not supported)
 """
-function titleslidebi(;title=parameters["talk_title"], author=parameters["authors"], affiliations="IISc", contitle=parameters["conference"], background_image="")
+function titleslidebi(; title=parameters["talk_title"], author=join(parameters["authors"], ", "), affiliations="IISc", contitle=parameters["conference"], background_image="")
     slide =
         @htl("""
       <style>
@@ -180,6 +180,7 @@ function titleslidebi(;title=parameters["talk_title"], author=parameters["author
     return slide
 end
 
+# ╔═╡ 543454f1-cf1f-4e14-a9ae-2406ae2af72d
 """
 Function for title slide with logos.
 
@@ -195,7 +196,7 @@ Function for title slide with logos.
 * `size`: width and length of the left logo
 * `size1`: width and length of the right logo
 """
-function titleslidelogo(;title="Title", author=parameters["authors"], affiliations="IISc", contitle=parameters["conference"], background_image="",left_logo="",right_logo="",size=["100px","100px"],size1=["100px","100px"])
+function titleslidelogo(; title=parameters["talk_title"], author=join(parameters["authors"], ", "), affiliations="IISc", contitle=parameters["conference"], background_image="", left_logo="", right_logo="", size=["100px", "100px"], size1=["100px", "100px"])
     slide =
         @htl("""
       <style>
@@ -304,7 +305,7 @@ Function for title slide without a background image.
 * `affiliations` : Affiliations of the authors 
 * `contitle` : Title of the conference if any
 """
-function titleslide(; title=parameters["talk_title"], author=parameters["authors"], affiliations="IISc", contitle=parameters["conference"])
+function titleslide(; title=parameters["talk_title"], author=join(parameters["authors"], ", "), affiliations="IISc", contitle=parameters["conference"])
     slide =
         @htl("""
       <style>
@@ -382,7 +383,7 @@ end
 * `slide_number` : Number of the slide 
 * `author`: Name of the authors
 """
-function slide2x2(content_vec; title="Title", section=parameters["talk_short_title"], references="", slide_number="", author=parameters["authors"], spacing="auto")
+function slide2x2(content_vec; title="Title", section=parameters["talk_short_title"], references="", slide_number=parameters["bottom_right_header"], author=first(parameters["authors"]), spacing="auto")
     slide = @htl("""
 <style>
 	    main {
@@ -503,7 +504,7 @@ end
 * `slide_number` : Number of the slide 
 * `author`: Name of the authors
 """
-function slide2x2Images(content_vec; title="Title", section=parameters["talk_short_title"], references="", slide_number="", author=parameters["authors"])
+function slide2x2Images(content_vec; title="Title", section=parameters["talk_short_title"], references="", slide_number=parameters["bottom_right_header"], author=first(parameters["authors"]))
     slide = @htl("""
 <style>
 	    main {
@@ -630,7 +631,7 @@ Slide with single column layout.
 * `section` : Title of the section
 * `author`: Name of the authors
 """
-function onecolslide(content; title="Title", section=parameters["talk_short_title"], references="", slide_number="", author=parameters["authors"], align="center")
+function onecolslide(content; title="Title", section=parameters["talk_short_title"], references="", slide_number=parameters["bottom_right_header"], author=first(parameters["authors"]), align="center")
     if (references != "")
         slide = @htl("""
     <style>
@@ -824,7 +825,7 @@ Slide with two columns layout.
 * `section` : Title of the section
 * `author`: Name of the authors
 """
-function twocolslide(content_vec; title="Title", section=parameters["talk_short_title"], references="", slide_number="", author=parameters["authors"], align=["justify", "justify"], spacing="auto")
+function twocolslide(content_vec; title="Title", section=parameters["talk_short_title"], references="", slide_number=parameters["bottom_right_header"], author=first(parameters["authors"]), align=["justify", "justify"], spacing="auto")
     if (references != "")
         slide = @htl("""
     <style>
@@ -1024,7 +1025,7 @@ Slide with three columns layout.
 * `section` : Title of the section
 * `author`: Name of the authors
 """
-function threecolslide(content_vec; title="Title", section=parameters["talk_short_title"], references="", slide_number="", author=parameters["authors"])
+function threecolslide(content_vec; title="Title", section=parameters["talk_short_title"], references="", slide_number=parameters["bottom_right_header"], author=first(parameters["authors"]))
     slide = @htl("""
 <style>
 	    main {
@@ -1126,6 +1127,9 @@ end
 
 # ╔═╡ 1f9175e4-c07d-499c-9db9-188e557aa260
 TableOfContents(include_definitions=true)
+
+# ╔═╡ e514f934-c8e0-4d97-af36-67b8999a556c
+
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -1472,7 +1476,8 @@ version = "17.4.0+2"
 
 # ╔═╡ Cell order:
 # ╟─e18ba3dd-013f-4a1e-abe7-9ff9c4d61e68
-# ╠═09d21ffa-00d1-4f87-901d-b6c9aee0c954
+# ╠═e397b8b9-2df3-48a5-9e88-7ed18080d734
+# ╠═543454f1-cf1f-4e14-a9ae-2406ae2af72d
 # ╠═c42fc7aa-6254-4342-8b5c-a24b67924fde
 # ╠═c1f832df-8184-4fe2-bfb3-7ab6f007b19b
 # ╠═b3288414-b4aa-4352-8a3e-a387d55d18a6
@@ -1485,5 +1490,6 @@ version = "17.4.0+2"
 # ╠═2210f32d-829e-4efe-a072-d478fcc18488
 # ╠═0bbc0291-7415-40dc-b6f1-2521c8cc356c
 # ╠═1f9175e4-c07d-499c-9db9-188e557aa260
+# ╠═e514f934-c8e0-4d97-af36-67b8999a556c
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

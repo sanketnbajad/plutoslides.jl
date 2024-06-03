@@ -1,5 +1,13 @@
-authors = "Sanket"
-organisation = "Indian Institute of Science"
-conference = "AGU"
-talk_title = "Seismology Using SymAE"
-talk_short_title = "Seismology"
+# Usually, first author is the presenting author
+authors = ["Sanket", "X", "Y"]
+
+organization = "Centre For Earth Sciences, Indian Institute of Science"
+conference = "34th Conference on Mathematical Geophysics"
+
+# only for the title slide
+talk_title = "Virtual Seismology Using Symmetric Autoencoders"
+
+# used for each slide in the centre
+talk_short_title = "Virtual Seismology Using Symmetric Autoencoders"
+
+bottom_right_header = "CMG, 2024"
