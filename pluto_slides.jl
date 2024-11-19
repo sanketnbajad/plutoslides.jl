@@ -105,7 +105,7 @@ Function for title slide with a background image.
 * `contitle` : Title of the conference if any
 * `background_image`: url of the background image (currently local images are not supported)
 """
-function titleslidebi(; title=parameters["talk_title"], author=join(parameters["authors"], ", "), affiliations="IISc", contitle=parameters["conference"], background_image="")
+function titleslidebi(; title=parameters["talk_title"], author=join(parameters["authors"], ", "), affiliations=parameters["organization"], contitle=parameters["conference"], background_image="")
     slide =
         @htl("""
       <style>
@@ -196,7 +196,7 @@ Function for title slide with logos.
 * `size`: width and length of the left logo
 * `size1`: width and length of the right logo
 """
-function titleslidelogo(; title=parameters["talk_title"], author=join(parameters["authors"], ", "), affiliations="IISc", contitle=parameters["conference"], background_image="", left_logo="", right_logo="", size=["100px", "100px"], size1=["100px", "100px"])
+function titleslidelogo(; title=parameters["talk_title"], author=join(parameters["authors"], ", "), affiliations=parameters["organization"], contitle=parameters["conference"], background_image="", left_logo="", right_logo="", size=["100px", "100px"], size1=["100px", "100px"])
     slide =
         @htl("""
       <style>
@@ -305,7 +305,7 @@ Function for title slide without a background image.
 * `affiliations` : Affiliations of the authors 
 * `contitle` : Title of the conference if any
 """
-function titleslide(; title=parameters["talk_title"], author=join(parameters["authors"], ", "), affiliations="IISc", contitle=parameters["conference"])
+function titleslide(; title=parameters["talk_title"], author=join(parameters["authors"], ", "), affiliations=parameters["organization"], contitle=parameters["conference"])
     slide =
         @htl("""
       <style>
