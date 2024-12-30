@@ -111,6 +111,12 @@ function titleslidebi(; title=parameters["talk_title"], author=join(parameters["
       <style>
       	    main {
               max-width: 1700px;
+                margin: auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                box-sizing: border-box;
           }
           .titlesl {
               width: 1600px;
@@ -200,9 +206,6 @@ function titleslidelogo(; title=parameters["talk_title"], author=join(parameters
     slide =
         @htl("""
       <style>
-      	    main {
-              max-width: 1700px;
-          }
           .titlesl2 {
               width: 1600px;
               height: 900px;
@@ -309,9 +312,6 @@ function titleslide(; title=parameters["talk_title"], author=join(parameters["au
     slide =
         @htl("""
       <style>
-      	    main {
-              max-width: 1700px;
-          }
           .titlesl1 {
               width: 1600px;
               height: 900px;
@@ -386,9 +386,6 @@ end
 function slide2x2(content_vec; title="Title", section=parameters["talk_short_title"], references="", slide_number=parameters["bottom_right_header"], author=first(parameters["authors"]), spacing="auto")
     slide = @htl("""
 <style>
-	    main {
-        max-width: 1700px;
-    }
     .slide2 {
         width: 1600px;
         height: 900px;
@@ -507,9 +504,6 @@ end
 function slide2x2Images(content_vec; title="Title", section=parameters["talk_short_title"], references="", slide_number=parameters["bottom_right_header"], author=first(parameters["authors"]))
     slide = @htl("""
 <style>
-	    main {
-        max-width: 1700px;
-    }
     .slide2 {
         width: 1600px;
         height: 900px;
@@ -635,9 +629,6 @@ function onecolslide(content; title="Title", section=parameters["talk_short_titl
     if (references != "")
         slide = @htl("""
     <style>
-    	    main {
-            max-width: 1700px;
-        }
         .slide {
             width: 1600px;
             height: 900px;
@@ -726,9 +717,6 @@ function onecolslide(content; title="Title", section=parameters["talk_short_titl
     else
         slide = @htl("""
     <style>
-    	    main {
-            max-width: 1700px;
-        }
         .slide {
             width: 1600px;
             height: 900px;
@@ -829,9 +817,6 @@ function twocolslide(content_vec; title="Title", section=parameters["talk_short_
     if (references != "")
         slide = @htl("""
     <style>
-    	    main {
-            max-width: 1700px;
-        }
         .slide {
             width: 1600px;
             height: 900px;
@@ -923,9 +908,6 @@ function twocolslide(content_vec; title="Title", section=parameters["talk_short_
     else
         slide = @htl("""
      <style>
-     	    main {
-             max-width: 1700px;
-         }
          .slide {
              width: 1600px;
              height: 900px;
@@ -1028,9 +1010,6 @@ Slide with three columns layout.
 function threecolslide(content_vec; title="Title", section=parameters["talk_short_title"], references="", slide_number=parameters["bottom_right_header"], author=first(parameters["authors"]))
     slide = @htl("""
 <style>
-	    main {
-        max-width: 1700px;
-    }
     .slide {
         width: 1600px;
         height: 900px;
